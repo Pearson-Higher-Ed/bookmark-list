@@ -14,7 +14,7 @@ class BookmarkList extends React.Component {
     }
   }
 
-  handleRemoveBookmark(uri) {
+  handleRemoveBookmark(uri, event) {
     function callBack() {
       const index = this.props.bookmarksArr.findIndex(item => item.uri === uri);
       this.props.bookmarksArr.splice(index, 1);
@@ -22,6 +22,7 @@ class BookmarkList extends React.Component {
       this.setState({bookmarkList: this.props.bookmarksArr});
     }
 
+    event.stopPropagation();
     if (this.props.removeBookmarkHandler) {
       this.props.removeBookmarkHandler(uri, callBack.bind(this));
     }
@@ -40,30 +41,32 @@ class BookmarkList extends React.Component {
     const that = this;
     const {formatMessage} = this.props.intl;
     const {formatDate} = this.props.intl;
+    const {formatTime} = this.props.intl;
 
     return(<ul className="o-bookmark-list">
       {
         this.state.bookmarkList.map(function(bkmark) {
           return <li className="o-bookmark-section" key={bkmark.uri}>
-            <a className="o-bookmark-title"
+            <a className="o-bookmark-content"
               data-uri={bkmark.uri}
               href="javascript:void(0)"
               onClick = {that.handleClick.bind(that, bkmark.uri)}
               onKeyPress={that.handleClick.bind(that, bkmark.uri)}>{bkmark.title}
+              <div className="o-bookmark-date">
+                <time value={bkmark.createdTimestamp}>{formatDate(new Date(bkmark.createdTimestamp), {
+                  year : 'numeric',
+                  month: 'numeric',
+                  day  : 'numeric'
+                })}</time>
+              {' '}
+                <time value={bkmark.createdTimestamp}>{formatTime(new Date(bkmark.createdTimestamp), {
+                  timeZone:that.props.locale,
+                  hour12: true,
+                  hour : 'numeric',
+                  minute: 'numeric'
+                })}</time>
+              </div>
             </a>
-            <div className="o-bookmark-date">
-              <time value={bkmark.createdTimestamp}>{formatDate(new Date(bkmark.createdTimestamp), {
-                year : 'numeric',
-                month: 'numeric',
-                day  : 'numeric'
-              })}</time>
-              <span>|</span>
-              <time value={bkmark.createdTimestamp}>{formatDate(new Date(bkmark.createdTimestamp), {
-                hour : 'numeric',
-                minute: 'numeric',
-                second  : 'numeric'
-              })}</time>
-            </div>
             <a href="javascript:void(0);"
               className="remove"
               onClick= {that.handleRemoveBookmark.bind(that, bkmark.uri)}
