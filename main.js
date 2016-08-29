@@ -37,4 +37,4 @@ export default class BookmarkListDemo {
   }
 }
 
-document.body.addEventListener('o.initBookmarkListDemo', e => new BookmarkListDemo(e.detail));
+document.body.addEventListener('o.InitBookmarkListDemo', e => new BookmarkListDemo(e.detail));
