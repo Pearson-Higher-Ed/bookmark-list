@@ -1,0 +1,75 @@
+ul.o-bookmark-list {
+  margin: 0;
+  padding:0;
+  list-style: none;
+  padding-bottom: 15px;
+  border-top: 1px solid #ddd;
+  font-family: OpenSans;
+  li {
+    font-weight: normal;
+    position: relative;
+    border-bottom: 1px solid #ddd;
+    &.focused{
+      .remove{
+        @include showDeleteIcon;
+      }
+    }
+    &:hover{
+      background: #e6e6e6;
+      +.remove{
+        @include showDeleteIcon;
+      }
+    }
+    .remove {
+      visibility: hidden;
+      position: absolute;
+      right: 25px;
+      width:18px;
+      height:18px;
+      text-decoration: none;
+      bottom: 20px;
+      background:transparent url(./images/ic-trash.png)0 0 no-repeat;
+    }
+    .remove:hover,
+    .remove:focus {
+      @include showDeleteIcon;
+    }
+    a.o-bookmark-content{
+      width:100%;
+      height:100%;
+      display:block;
+      padding: 20px 60px 20px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #000000;
+      display: inline-block;
+      word-wrap: break-word;
+      text-decoration: none;
+    }
+    .o-bookmark-date {
+      margin-top:12px;
+      color: #868686;
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+}
+
+.o-bookmark-empty-help{
+  height: 100%;
+  width: 100%;
+  display: table;
+  padding: 0 20px;
+  box-sizing: border-box;
+  .o-bookmark-empty-message{
+    text-align: center;
+    display: table-cell;
+    float: none;
+    color: #4C5259;
+    font-size: 26px;
+    font-weight: 200;
+    line-height: 20px;
+    padding-top: 30px;
+  }
+}
+
