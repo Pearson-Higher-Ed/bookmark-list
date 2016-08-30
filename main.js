@@ -11,7 +11,7 @@ const translations = {
   'fr' : frJson
 };
 
-export default class BookmarkListDemo {
+export default class Bookmarks {
 
   constructor(config) {
     const locale = config.locale ? config.locale : '';
@@ -37,4 +37,4 @@ export default class BookmarkListDemo {
   }
 }
 
-document.body.addEventListener('o.InitBookmarkListDemo', e => new BookmarkListDemo(e.detail));
+document.body.addEventListener('o.InitBookmarkList', e => new Bookmarks(e.detail));
