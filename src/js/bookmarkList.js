@@ -37,6 +37,14 @@ class BookmarkList extends React.Component {
     </div>);
   }
 
+  onFocus() {
+    this.setState({focused: true});
+  }
+
+  onBlur() {
+    this.setState({focused: false});
+  }
+
   renderBookmarks() {
     const that = this;
     const {formatMessage} = this.props.intl;
@@ -46,7 +54,7 @@ class BookmarkList extends React.Component {
     return(<ul className="o-bookmark-list">
       {
         this.state.bookmarkList.map(function(bkmark) {
-          return <li className="o-bookmark-section" key={bkmark.uri}>
+          return <li className={that.state.focused ? 'o-bookmark-section focused' : 'o-bookmark-section focused'} onFocus={that.onFocus.bind(that)} key={bkmark.uri} >
             <a className="o-bookmark-content"
               data-uri={bkmark.uri}
               href="javascript:void(0)"
@@ -72,7 +80,6 @@ class BookmarkList extends React.Component {
               onClick= {that.handleRemoveBookmark.bind(that, bkmark.uri)}
               aria-label={formatMessage(messages.removeBookmarkText)}
               role="button">
-              <span className="pe-icon--times" aria-hidden="true"></span>
             </a>
           </li>
         })
