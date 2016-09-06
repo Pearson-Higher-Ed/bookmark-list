@@ -8,14 +8,13 @@ ul.o-bookmark-list {
     font-weight: normal;
     position: relative;
     border-bottom: 1px solid #ddd;
-    &.focused{
-      .remove{
-        @include showDeleteIcon;
+    &.o-bookmark-section{
+      >.remove{
+        visibility: hidden;
       }
     }
-    &:hover{
-      background: #e6e6e6;
-      +.remove{
+    &.focused{
+      >.remove{
         @include showDeleteIcon;
       }
     }
@@ -44,6 +43,15 @@ ul.o-bookmark-list {
       display: inline-block;
       word-wrap: break-word;
       text-decoration: none;
+      &:hover{
+        background: #e5eef0;
+        +.remove{
+          @include showDeleteIcon;
+        }
+      }
+      &:focus{
+        background: #e5eef0;
+      }
     }
     .o-bookmark-date {
       margin-top:12px;

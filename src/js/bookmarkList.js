@@ -37,12 +37,22 @@ class BookmarkList extends React.Component {
     </div>);
   }
 
-  onFocus() {
-    this.setState({focused: true});
+  onFocus(e) {
+    //this.setState({focused: true});
+    e.target.parentNode.className += ' focused';
+    return true;
   }
 
-  onBlur() {
-    this.setState({focused: false});
+  onLiBlur(e) {
+    if (e.shiftKey && e.keyCode === 9) {
+      e.target.parentNode.className = ' o-bookmark-section';
+    }
+  }
+
+  onBlur(e) {
+    //this.setState({focused: false});
+    e.target.parentNode.className = ' o-bookmark-section';
+    return true;
   }
 
   renderBookmarks() {
@@ -54,8 +64,13 @@ class BookmarkList extends React.Component {
     return(<ul className="o-bookmark-list">
       {
         this.state.bookmarkList.map(function(bkmark) {
-          return <li className={that.state.focused ? 'o-bookmark-section focused' : 'o-bookmark-section focused'} onFocus={that.onFocus.bind(that)} key={bkmark.uri} >
+          return <li
+
+            className="o-bookmark-section"
+            key={bkmark.uri} >
             <a className="o-bookmark-content"
+              onFocus= {that.onFocus.bind(that)}
+              onKeyDown= {that.onLiBlur.bind(that)}
               data-uri={bkmark.uri}
               href="javascript:void(0)"
               onClick = {that.handleClick.bind(that, bkmark.uri)}
@@ -76,6 +91,7 @@ class BookmarkList extends React.Component {
               </div>
             </a>
             <a href="javascript:void(0);"
+              onBlur={that.onBlur.bind(that)}
               className="remove"
               onClick= {that.handleRemoveBookmark.bind(that, bkmark.uri)}
               aria-label={formatMessage(messages.removeBookmarkText)}

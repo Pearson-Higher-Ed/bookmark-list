@@ -23,7 +23,7 @@ function init() {
   //Demo Loading component via event:
   document.body.dispatchEvent(new CustomEvent('o.InitBookmarkList', {
     detail: {
-      elementId: 'container',
+      elementId: 'demo-container',
       bookmarksArr: sampleData,
       locale: region,
       'clickBookmarkHandler' : window.bookmarkClickCbk,
