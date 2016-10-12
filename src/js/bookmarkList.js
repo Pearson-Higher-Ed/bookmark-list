@@ -5,7 +5,6 @@ import {messages} from './defaultMessages';
 class BookmarkList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { bookmarkList: this.props.bookmarksArr};
   }
 
   handleClick(uri) {
@@ -15,17 +14,9 @@ class BookmarkList extends React.Component {
   }
 
   handleRemoveBookmark(uri, event) {
-    function callBack() {
-      const index = this.props.bookmarksArr.findIndex(item => item.uri === uri);
-      this.props.bookmarksArr.splice(index, 1);
-
-      this.setState({bookmarkList: this.props.bookmarksArr});
-    }
-
     event.stopPropagation();
-    if (this.props.removeBookmarkHandler) {
-      this.props.removeBookmarkHandler(uri, callBack.bind(this));
-    }
+    this.props.store.dispatch(this.props.actions.removeBookmark(uri));
+    this.forceUpdate();
   }
 
   renderNoBookmarks() {
@@ -38,19 +29,17 @@ class BookmarkList extends React.Component {
   }
 
   onFocus(e) {
-    //this.setState({focused: true});
-    e.target.parentNode.className += ' focused';
+    e.target.parentNode.classList.add('focused');
     return true;
   }
 
   onLiBlur(e) {
     if (e.shiftKey && e.keyCode === 9) {
-      e.target.parentNode.className = ' o-bookmark-section';
+      e.target.parentNode.classList.remove('focused');
     }
   }
 
   onBlur(e) {
-    //this.setState({focused: false});
     e.target.parentNode.className = ' o-bookmark-section';
     return true;
   }
@@ -63,9 +52,8 @@ class BookmarkList extends React.Component {
 
     return(<ul className="o-bookmark-list">
       {
-        this.state.bookmarkList.map(function(bkmark) {
+        this.props.store.getState().bookmarks.map(function(bkmark) {
           return <li
-
             className="o-bookmark-section"
             key={bkmark.uri} >
             <a className="o-bookmark-content"
@@ -104,7 +92,7 @@ class BookmarkList extends React.Component {
   }
 
   render() {
-    if (this.state.bookmarkList.length) {
+    if (this.props.store.getState().bookmarks.length) {
       return this.renderBookmarks();
     } else {
       return this.renderNoBookmarks();
@@ -115,9 +103,7 @@ class BookmarkList extends React.Component {
 BookmarkList.propTypes = {
   intl: intlShape.isRequired,
   locale: PropTypes.string,
-  clickBookmarkHandler: PropTypes.func,
-  removeBookmarkHandler: PropTypes.func,
-  bookmarksArr: PropTypes.array.isRequired
+  clickBookmarkHandler: PropTypes.func
 };
 
 export default injectIntl(BookmarkList);

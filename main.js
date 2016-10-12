@@ -30,6 +30,8 @@ export default class Bookmarks {
           <BookmarkList bookmarksArr={config.bookmarksArr}
               clickBookmarkHandler={config.clickBookmarkHandler}
               removeBookmarkHandler={config.removeBookmarkHandler}
+              store={config.store}
+              actions={config.actions}
               />
       </IntlProvider>,
       document.getElementById(config.elementId)

@@ -2,7 +2,7 @@
 module.exports = {
   entry: {
     dev: ['webpack/hot/dev-server', './main.js', './demo/demo.js'],
-    dist: ['./main.js', './demo/demo.js']
+    dist: ['./main.js']
   },
   output: {
     path: './',
@@ -46,7 +46,8 @@ module.exports = {
         loader: 'babel',
         query: {
           cacheDirectory: true,
-          presets: ['es2015', 'react', 'stage-0']
+          presets: ['es2015', 'react', 'stage-0'],
+          plugins: ['transform-object-rest-spread']
         }
       },
       {
