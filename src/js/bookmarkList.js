@@ -5,6 +5,8 @@ import {messages} from './defaultMessages';
 class BookmarkList extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.state = { bookmarkList: this.props.bookmarksArr};
   }
 
   handleClick(uri) {
@@ -13,10 +15,13 @@ class BookmarkList extends React.Component {
     }
   }
 
-  handleRemoveBookmark(uri, event) {
-    event.stopPropagation();
-    this.props.store.dispatch(this.props.actions.removeBookmark(uri));
-    this.forceUpdate();
+  handleRemoveBookmark(id) {
+    if (this.props.store) {
+      this.props.store.dispatch(this.props.actions.removeBookmark(id));
+    }    
+    const index = this.props.bookmarksArr.findIndex(item => item.id === id);
+    this.props.bookmarksArr.splice(index, 1);
+    this.setState({bookmarkList: this.props.bookmarksArr});
   }
 
   renderNoBookmarks() {
@@ -52,10 +57,10 @@ class BookmarkList extends React.Component {
 
     return(<ul className="o-bookmark-list">
       {
-        this.props.store.getState().bookmarks.map(function(bkmark) {
+        this.state.bookmarkList.map(function(bkmark) {
           return <li
             className="o-bookmark-section"
-            key={bkmark.uri} >
+            key={bkmark.id} >
             <a className="o-bookmark-content"
               onFocus= {that.onFocus.bind(that)}
               onKeyDown= {that.onLiBlur.bind(that)}
@@ -81,7 +86,7 @@ class BookmarkList extends React.Component {
             <a href="javascript:void(0);"
               onBlur={that.onBlur.bind(that)}
               className="remove"
-              onClick= {that.handleRemoveBookmark.bind(that, bkmark.uri)}
+              onClick= {that.handleRemoveBookmark.bind(that, bkmark.id)}
               aria-label={formatMessage(messages.removeBookmarkText)}
               role="button">
             </a>
@@ -92,7 +97,7 @@ class BookmarkList extends React.Component {
   }
 
   render() {
-    if (this.props.store.getState().bookmarks.length) {
+    if (this.state.bookmarkList.length) {
       return this.renderBookmarks();
     } else {
       return this.renderNoBookmarks();
@@ -103,7 +108,8 @@ class BookmarkList extends React.Component {
 BookmarkList.propTypes = {
   intl: intlShape.isRequired,
   locale: PropTypes.string,
-  clickBookmarkHandler: PropTypes.func
+  clickBookmarkHandler: PropTypes.func,
+  bookmarksArr: PropTypes.array.isRequired
 };
 
 export default injectIntl(BookmarkList);
