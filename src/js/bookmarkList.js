@@ -5,20 +5,18 @@ import {messages} from './defaultMessages';
 class BookmarkList extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = { bookmarkList: this.props.bookmarksArr};
   }
 
   handleClick(uri) {
-    if (this.props.clickBookmarkHandler) {
-      this.props.clickBookmarkHandler(uri);
-    }
+    window.pubsub.publish('GO_TO_PAGE', uri);
   }
 
   handleRemoveBookmark(id) {
     if (this.props.store) {
       this.props.store.dispatch(this.props.actions.removeBookmark(id));
-    }    
+    }
     const index = this.props.bookmarksArr.findIndex(item => item.id === id);
     this.props.bookmarksArr.splice(index, 1);
     this.setState({bookmarkList: this.props.bookmarksArr});
