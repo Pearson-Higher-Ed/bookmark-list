@@ -12,12 +12,11 @@ ul.o-bookmark-list {
       > .remove {
         visibility: hidden;
       }
+      &:hover {
+        background: #EDF8FF;
+        }
     }
     &.focused {
-      border-bottom:3px solid transparent;
-      a{
-        border-bottom:1px solid #ddd;
-      }
       > .remove {
         @include showDeleteIcon;
       }
@@ -35,6 +34,7 @@ ul.o-bookmark-list {
     .remove:hover,
     .remove:focus {
       @include showDeleteIcon;
+       opacity: 0.6;
     }
     a.o-bookmark-content {
       width: 100%;
