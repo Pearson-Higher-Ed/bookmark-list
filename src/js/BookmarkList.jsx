@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import {injectIntl, intlShape} from 'react-intl';
-import {messages} from './defaultMessages';
+import { injectIntl, intlShape } from 'react-intl';
+import { messages } from './defaultMessages';
 
 class BookmarkList extends React.Component {
   constructor(props) {
