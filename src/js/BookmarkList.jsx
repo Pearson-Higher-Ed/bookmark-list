@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import { injectIntl, intlShape } from 'react-intl';
+// import { injectIntl, intlShape } from 'react-intl';
 import { messages } from './defaultMessages';
 
 class BookmarkList extends React.Component {
@@ -23,10 +23,10 @@ class BookmarkList extends React.Component {
   }
 
   renderNoBookmarks() {
-    const {formatMessage} = this.props.intl;
+    // const {formatMessage} = this.props.intl;
     return (<div className="o-bookmark-empty-help">
       <div tabIndex="0" className="o-bookmark-empty-message">
-        <p>{formatMessage(messages.noBookmarksMsg)}</p>
+        // <p>{formatMessage(messages.noBookmarksMsg)}</p>
       </div>
     </div>);
   }
@@ -49,9 +49,9 @@ class BookmarkList extends React.Component {
 
   renderBookmarks() {
     const that = this;
-    const {formatMessage} = this.props.intl;
-    const {formatDate} = this.props.intl;
-    const {formatTime} = this.props.intl;
+    // const {formatMessage} = this.props.intl;
+    // const {formatDate} = this.props.intl;
+    // const {formatTime} = this.props.intl;
 
     return(<ul className="o-bookmark-list">
       {
@@ -67,25 +67,13 @@ class BookmarkList extends React.Component {
               onClick = {that.handleClick.bind(that, bkmark.uri)}
               onKeyPress={that.handleClick.bind(that, bkmark.uri)}>{bkmark.title}
               <div className="o-bookmark-date">
-                <time value={bkmark.createdTimestamp}>{formatDate(new Date(bkmark.createdTimestamp), {
-                  year : 'numeric',
-                  month: 'numeric',
-                  day  : 'numeric'
-                })}</time>
-              {' '}
-                <time value={bkmark.createdTimestamp}>{formatTime(new Date(bkmark.createdTimestamp), {
-                  timeZone:that.props.locale,
-                  hour12: true,
-                  hour : 'numeric',
-                  minute: 'numeric'
-                })}</time>
+                <time value={bkmark.createdTimestamp}>{bkmark.createdTimestamp}</time>
               </div>
             </a>
             <a href="javascript:void(0);"
               onBlur={that.onBlur.bind(that)}
               className="remove"
               onClick= {that.handleRemoveBookmark.bind(that, bkmark.id)}
-              aria-label={formatMessage(messages.removeBookmarkText)}
               role="button">
             </a>
           </li>
@@ -104,10 +92,10 @@ class BookmarkList extends React.Component {
 }
 
 BookmarkList.propTypes = {
-  intl: intlShape.isRequired,
+  // intl: intlShape.isRequired,
   locale: PropTypes.string,
   clickBookmarkHandler: PropTypes.func,
   bookmarksArr: PropTypes.array.isRequired
 };
 
-export default injectIntl(BookmarkList);
+export default BookmarkList;

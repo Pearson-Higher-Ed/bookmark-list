@@ -6,6 +6,7 @@ import frLocaleData from 'react-intl/locale-data/fr';
 import frJson from './translations/fr.json';
 import BookmarkList from './src/js/BookmarkList';
 import './main.scss';
+import ComponentOwner from './src/js/component-owner';
 
 const translations = {
   'fr' : frJson
@@ -26,12 +27,11 @@ export default class BookmarkListComponent {
 
     ReactDOM.render(
       <IntlProvider locale={locale} messages={translations[locale]}>
-          <BookmarkList 
+          <ComponentOwner 
               bookmarksArr={config.bookmarksArr}
               clickBookmarkHandler={config.clickBookmarkHandler}
               removeBookmarkHandler={config.removeBookmarkHandler}
-              store={config.store}
-              actions={config.actions} />
+         />
       </IntlProvider>,
       document.getElementById(config.elementId)
     );
