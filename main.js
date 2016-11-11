@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import frLocaleData from 'react-intl/locale-data/fr';
 import frJson from './translations/fr.json';
-import BookmarkList from './src/js/BookmarkList';
 import './main.scss';
 import ComponentOwner from './src/js/component-owner';
 
