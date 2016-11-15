@@ -1,6 +1,6 @@
 import BookmarkListDemo from '../main';
 import * as bookmarkActions from './actions';
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import {createStore} from 'redux';
 import { combineReducers } from 'redux'
 import bookmarks from './reducer';
@@ -25,7 +25,7 @@ function getParam(item) {
 }
 
 function init() {
-
+  injectTapEventPlugin();
   const region = getParam('lang') || 'en';
   //Demo Loading component via event:
   document.body.dispatchEvent(new CustomEvent('o.InitBookmarkList', {

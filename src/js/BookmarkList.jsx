@@ -1,16 +1,33 @@
 import React, {PropTypes} from 'react';
-// import { injectIntl, intlShape } from 'react-intl';
 import { messages } from './defaultMessages';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import SvgIcon from 'material-ui/SvgIcon';
 
 class BookmarkList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { bookmarkList: this.props.bookmarksArr};
+    this.handleModalOpen=this.handleModalOpen.bind(this);
+    this.state = { 
+      bookmarkList: this.props.bookmarksArr,
+      modalOpen: false,
+      bookmarkId:''
+    };
   }
 
+  handleModalOpen (id) {
+    this.setState({
+      modalOpen: true,
+      bookmarkId:id
+    });    
+  };
+
+  handleModalClose = () =>  {
+    this.setState({modalOpen: false});
+  };
+
   handleClick(uri) {
-    window.pubsub.publish('GO_TO_PAGE', uri);
+    //window.pubsub.publish('GO_TO_PAGE', uri);
   }
 
   handleRemoveBookmark(id) {
@@ -19,7 +36,10 @@ class BookmarkList extends React.Component {
     }
     const index = this.props.bookmarksArr.findIndex(item => item.id === id);
     this.props.bookmarksArr.splice(index, 1);
-    this.setState({bookmarkList: this.props.bookmarksArr});
+    this.setState({
+      bookmarkList: this.props.bookmarksArr,
+      modalOpen: false
+    });
   }
 
   renderNoBookmarks() {
@@ -52,8 +72,52 @@ class BookmarkList extends React.Component {
     // const {formatMessage} = this.props.intl;
     // const {formatDate} = this.props.intl;
     // const {formatTime} = this.props.intl;
+    const DialogStyle = {
+      dialogContainerstyl : {
+        width: '362px',
+        backgroundColor: '#fff',
+        borderRadius: '4px'
+      },
+      cancelIcon: {
+        color: '#8d8d8d',
+        position: 'absolute',
+        top: '19px',
+        right: '19px',
+        height: '18.7px',
+        width: '18px',
+        cursor: 'pointer'
+      },
+      cancelbtnstyl : {
+        color: '#74797b'
+      },
+      deleteBtnstyl : {
+        borderRadius: 2,
+        backgroundColor: '#34b6b4'
+      }
+    }
+    
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        style={DialogStyle.cancelbtnstyl}
+        className="cancelBtn"
+        onClick={this.handleModalClose} />,
+      <FlatButton
+        label="Delete"
+        primary={true}
+        onClick={that.handleRemoveBookmark.bind(that,that.state.bookmarkId)}
+        style={DialogStyle.deleteBtnstyl}
+        className="deleteBtn" />
+    ];
 
-    return(<ul className="o-bookmark-list">
+    const CancelIcon = (props) => (
+      <SvgIcon {...props}>
+        <path d="M712.993036,23.3253012 L720.736289,15.2808193 C721.026024,14.9878313 721.026024,14.5128916 720.735855,14.2199036 C720.445687,13.9266988 719.975518,13.9266988 719.685349,14.2199036 L711.976795,22.005012 L704.268458,14.2199036 C703.978072,13.9266988 703.50812,13.9266988 703.217735,14.2199036 C702.927566,14.5128916 702.927566,14.9878313 703.217518,15.2808193 L710.960554,23.3253012 L703.217735,31.3697831 C702.927566,31.6627711 702.927566,32.1377108 703.217735,32.4306988 C703.507687,32.7234699 703.978072,32.7239036 704.268458,32.4306988 L711.976795,24.6455904 L719.685349,32.4306988 C719.975518,32.7239036 720.44612,32.7234699 720.735855,32.4306988 C721.026024,32.1377108 721.026024,31.6627711 720.735855,31.3697831 L712.993036,23.3253012 Z" id="ic_cancel" fill="#8d8d8d"></path>
+      </SvgIcon>
+    );
+
+    return(<div><ul className="o-bookmark-list">
       {
         this.state.bookmarkList.map(function(bkmark) {
           return <li
@@ -73,13 +137,25 @@ class BookmarkList extends React.Component {
             <a href="javascript:void(0);"
               onBlur={that.onBlur.bind(that)}
               className="remove"
-              onClick= {that.handleRemoveBookmark.bind(that, bkmark.id)}
+              onClick= {that.handleModalOpen.bind(this,bkmark.id)}
               role="button">
             </a>
-          </li>
+            </li>
         })
       }
-    </ul>);
+    </ul>
+    <Dialog
+        title="Confirm Delete?"
+        actions={actions}
+        modal={false}
+        open={that.state.modalOpen}
+        onRequestClose={that.handleModalClose}
+        contentStyle={DialogStyle.dialogContainerstyl}>
+        <CancelIcon onClick={that.handleModalClose} viewBox="703 14 18 18.7" style={DialogStyle.cancelIcon}/> 
+        This action cannot be undone.
+    </Dialog>
+     </div>     
+    );
   }
 
   render() {
