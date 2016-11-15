@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import { messages } from './defaultMessages';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import SvgIcon from 'material-ui/SvgIcon';
@@ -42,11 +41,10 @@ class BookmarkList extends React.Component {
     });
   }
 
-  renderNoBookmarks() {
-    // const {formatMessage} = this.props.intl;
+  renderNoBookmarks() {    
     return (<div className="o-bookmark-empty-help">
       <div tabIndex="0" className="o-bookmark-empty-message">
-        // <p>{formatMessage(messages.noBookmarksMsg)}</p>
+        <p>No Bookmarks were found.</p>
       </div>
     </div>);
   }
