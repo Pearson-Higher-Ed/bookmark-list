@@ -120,6 +120,7 @@ class BookmarkList extends React.Component {
         this.state.bookmarkList.map(function(bkmark) {
           return <li
             className="o-bookmark-section"
+            tabIndex='0'
             key={bkmark.id} >
             <a className="o-bookmark-content"
               onFocus= {that.onFocus.bind(that)}
