@@ -3,7 +3,7 @@ ul.o-bookmark-list {
   padding: 0;
   list-style: none;
   padding-bottom: 15px;
-  font-family: OpenSans;
+  font-family: Open Sans;
   li {
     font-weight: normal;
     position: relative;
@@ -99,7 +99,7 @@ button.deleteBtn div{
   color: #fff;
   height: 36px; 
 }
-button div span{
+button.cancelBtn div span,button.deleteBtn div span{
   text-transform: none !important;
   font-weight: normal !important;
   font-size: 18px !important;
