@@ -104,7 +104,7 @@ class BookmarkList extends React.Component {
       <FlatButton
         label="Delete"
         primary={true}
-        onClick={that.handleRemoveBookmark.bind(that,that.state.bookmarkId)}
+        onClick={that.handleRemoveBookmark.bind(that, that.state.bookmarkId)}
         style={DialogStyle.deleteBtnstyl}
         className="deleteBtn" />
     ];
@@ -120,7 +120,6 @@ class BookmarkList extends React.Component {
         this.state.bookmarkList.map(function(bkmark) {
           return <li
             className="o-bookmark-section"
-            tabIndex='0'
             key={bkmark.id} >
             <a className="o-bookmark-content"
               onFocus= {that.onFocus.bind(that)}
@@ -136,7 +135,7 @@ class BookmarkList extends React.Component {
             <a href="javascript:void(0);"
               onBlur={that.onBlur.bind(that)}
               className="remove"
-              onClick= {that.handleModalOpen.bind(this,bkmark.id)}
+              onClick= {that.handleModalOpen.bind(this, bkmark.id)}
               role="button">
             </a>
             </li>
