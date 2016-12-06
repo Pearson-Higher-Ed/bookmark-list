@@ -26,13 +26,11 @@ class BookmarkList extends React.Component {
   };
 
   handleClick(uri) {
-    //window.pubsub.publish('GO_TO_PAGE', uri);
+    this.props.clickBookmarkHandler(uri);
   }
 
   handleRemoveBookmark(id) {
-    if (this.props.store) {
-      this.props.store.dispatch(this.props.actions.removeBookmark(id));
-    }
+    this.props.removeBookmarkHandler(id);
     const index = this.props.bookmarksArr.findIndex(item => item.id === id);
     this.props.bookmarksArr.splice(index, 1);
     this.setState({
