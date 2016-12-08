@@ -2,8 +2,11 @@ ul.o-bookmark-list {
   margin: 0;
   padding: 0;
   list-style: none;
-  padding-bottom: 15px;
   font-family: Open Sans;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  color: #716b7a;
   li {
     font-weight: normal;
     position: relative;
