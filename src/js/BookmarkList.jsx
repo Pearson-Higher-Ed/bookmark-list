@@ -25,8 +25,11 @@ class BookmarkList extends React.Component {
     this.setState({modalOpen: false});
   };
 
-  handleClick(uri) {
+  handleClick(uri,e) {
     this.props.clickBookmarkHandler(uri);
+    let listDom = Array.from(document.getElementsByClassName('o-bookmark-section'));
+    listDom.map((node) => node.className = 'o-bookmark-section');
+    e.target.parentNode.classList.add('focused');
   }
 
   handleRemoveBookmark(id) {
