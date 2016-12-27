@@ -25,9 +25,9 @@ class BookmarkList extends React.Component {
     this.setState({modalOpen: false});
   };
 
-  handleClick(uri,e) {
+  handleClick(uri, e) {
     this.props.clickBookmarkHandler(uri);
-    let listDom = Array.from(document.getElementsByClassName('o-bookmark-section'));
+    const listDom = Array.from(document.getElementsByClassName('o-bookmark-section'));
     listDom.map((node) => node.className = 'o-bookmark-section');
     e.target.parentNode.classList.add('focused');
   }
@@ -119,6 +119,9 @@ class BookmarkList extends React.Component {
     return(<div><ul className="o-bookmark-list">
       {
         this.state.bookmarkList.map(function(bkmark) {
+          const formatDateFrom_ms = new Date(bkmark.createdTimestamp);
+          const date = formatDateFrom_ms.toLocaleDateString();
+          const time = formatDateFrom_ms.toLocaleTimeString().replace(/(.*)\D\d+/, '$1');
           return <li
             className="o-bookmark-section"
             key={bkmark.id} >
@@ -130,7 +133,7 @@ class BookmarkList extends React.Component {
               onClick = {that.handleClick.bind(that, bkmark.uri)}
               onKeyPress={that.handleClick.bind(that, bkmark.uri)}>{bkmark.title}
               <div className="o-bookmark-date">
-                <time value={bkmark.createdTimestamp}>{bkmark.createdTimestamp}</time>
+                <time value={bkmark.createdTimestamp}>{date + ' ' + time}</time>
               </div>
             </a>
             <a href="javascript:void(0);"
