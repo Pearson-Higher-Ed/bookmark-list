@@ -105,6 +105,7 @@ class BookmarkList extends React.Component {
       <FlatButton
         label="Delete"
         primary={true}
+        keyboardFocused={true}
         onClick={that.handleRemoveBookmark.bind(that, that.state.bookmarkId)}
         style={DialogStyle.deleteBtnstyl}
         className="deleteBtn" />
