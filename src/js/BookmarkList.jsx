@@ -66,6 +66,23 @@ class BookmarkList extends React.Component {
     return true;
   }
 
+  dialogKeySelect = (event) => {
+    if ((event.which === 9 || event.keyCode === 9) && !event.shiftKey) {
+      document.getElementsByClassName('handleCloseIcon')[0].focus();
+      event.preventDefault();
+    }
+  }
+
+  cancelIconKeySelect = (event) => {
+    if ((event.which || event.keyCode) === 13) {
+      this.handleModalClose();
+    }
+    if ((event.which === 9 || event.keyCode === 9) && event.shiftKey) {
+      document.getElementsByClassName('deleteBtn')[0].focus();
+      event.preventDefault();
+    }
+  }
+
   renderBookmarks() {
     const that = this;
     // const {formatMessage} = this.props.intl;
@@ -107,6 +124,7 @@ class BookmarkList extends React.Component {
         primary={true}
         keyboardFocused={true}
         onClick={that.handleRemoveBookmark.bind(that, that.state.bookmarkId)}
+        onKeyDown={this.dialogKeySelect}
         style={DialogStyle.deleteBtnstyl}
         className="deleteBtn" />
     ];
@@ -163,7 +181,7 @@ class BookmarkList extends React.Component {
         open={that.state.modalOpen}
         onRequestClose={that.handleModalClose}
         contentStyle={DialogStyle.dialogContainerstyl}>
-        <CancelIcon onClick={that.handleModalClose} viewBox="703 14 18 18.7" style={DialogStyle.cancelIcon}/> 
+        <CancelIcon tabIndex="0" onClick={that.handleModalClose} viewBox="703 14 18 18.7" style={DialogStyle.cancelIcon} className="handleCloseIcon"  onKeyDown={this.cancelIconKeySelect}/>
         This action cannot be undone.
     </Dialog>
      </div>     
