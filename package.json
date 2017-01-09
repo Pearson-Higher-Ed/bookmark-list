@@ -1,6 +1,6 @@
 {
   "name": "@pearson-incubator/bookmarks",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Bookmark component rendering user bookmarks of a book",
   "main": "./main.js",
   "scripts": {
