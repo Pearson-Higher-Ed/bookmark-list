@@ -121,8 +121,17 @@ class BookmarkList extends React.Component {
       {
         this.state.bookmarkList.map(function(bkmark) {
           const formatDateFrom_ms = new Date(bkmark.createdTimestamp);
-          const date = formatDateFrom_ms.toLocaleDateString();
-          const time = formatDateFrom_ms.toLocaleTimeString().replace(/(.*)\D\d+/, '$1');
+          let hours = formatDateFrom_ms.getHours();
+          let minutes = formatDateFrom_ms.getMinutes();
+          const ampm = hours >= 12 ? 'pm' : 'am';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // the hour '0' should be '12'
+          minutes = minutes < 10 ? `0${minutes}` : minutes;
+          const formattedAMPM = `${hours}:${minutes} ${ampm}`;
+          //return strTime;
+          //const formattedAMPM = this.formatAMPM(formatDateFrom_ms);
+          const dateWithTime = `${formatDateFrom_ms.getMonth() + 1}/${formatDateFrom_ms.getDate()}/${formatDateFrom_ms.getFullYear()} ${formattedAMPM}`;
+
           return <li
             className="o-bookmark-section"
             key={bkmark.id} >
@@ -134,7 +143,7 @@ class BookmarkList extends React.Component {
               onClick = {that.handleClick.bind(that, bkmark.uri)}
               onKeyPress={that.handleClick.bind(that, bkmark.uri)}>{bkmark.title}
               <div className="o-bookmark-date">
-                <time value={bkmark.createdTimestamp}>{date + ' ' + time}</time>
+                <time value={bkmark.createdTimestamp}>{dateWithTime}</time>
               </div>
             </a>
             <a href="javascript:void(0);"
