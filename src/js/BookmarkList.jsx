@@ -138,7 +138,7 @@ class BookmarkList extends React.Component {
     return(<div><ul className="o-bookmark-list">
       {
         this.state.bookmarkList.map(function(bkmark) {
-          const formatDateFrom_ms = new Date(bkmark.createdTimestamp);
+          const formatDateFrom_ms = new Date(Number(bkmark.createdTimestamp));
           let hours = formatDateFrom_ms.getHours();
           let minutes = formatDateFrom_ms.getMinutes();
           const ampm = hours >= 12 ? 'pm' : 'am';
