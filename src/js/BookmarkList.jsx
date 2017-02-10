@@ -41,13 +41,19 @@ class BookmarkList extends React.Component {
       modalOpen: false
     });
   }
-
+  
   renderNoBookmarks() {    
     return (<div className="o-bookmark-empty-help">
       <div tabIndex="0" className="o-bookmark-empty-message">
         <p>No Bookmarks were found.</p>
       </div>
     </div>);
+  }
+  arrowKeyPress(e) {
+    if (e.which === 37 || e.keyCode === 37 || e.which === 38 || e.keyCode === 38 || e.which === 39 || e.keyCode === 39 || e.which === 40 || e.keyCode === 40) { // down Arrow key
+      e.preventDefault();
+      e.target.parentNode.classList.remove('focused');
+    }
   }
 
   onFocus(e) {
@@ -159,7 +165,8 @@ class BookmarkList extends React.Component {
               data-uri={bkmark.uri}
               href="javascript:void(0)"
               onClick = {that.handleClick.bind(that, bkmark.uri)}
-              onKeyPress={that.handleClick.bind(that, bkmark.uri)}>{bkmark.title}
+              onKeyPress={that.handleClick.bind(that, bkmark.uri)}
+              onKeyUp={that.arrowKeyPress.bind(that)}>{bkmark.title}
               <div className="o-bookmark-date">
                 <time value={bkmark.createdTimestamp}>{dateWithTime}</time>
               </div>
