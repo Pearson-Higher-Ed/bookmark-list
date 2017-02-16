@@ -69,6 +69,10 @@ class BookmarkList extends React.Component {
 
   onBlur(e) {
     e.target.parentNode.className = ' o-bookmark-section';
+    if( e.target.parentNode === document.getElementsByClassName('o-bookmark-list')[0].lastChild ) {
+      this.props.drawerCallbacks.onActive('notes');
+      this.props.drawerCallbacks.changeState(2);
+    }
     return true;
   }
 
@@ -208,7 +212,8 @@ BookmarkList.propTypes = {
   // intl: intlShape.isRequired,
   locale: PropTypes.string,
   clickBookmarkHandler: PropTypes.func,
-  bookmarksArr: PropTypes.array.isRequired
+  bookmarksArr: PropTypes.array.isRequired,
+  drawerCallbacks: React.PropTypes.object
 };
 
 export default BookmarkList;
