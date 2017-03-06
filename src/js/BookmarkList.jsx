@@ -3,6 +3,7 @@ import { intlShape, injectIntl } from 'react-intl';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import SvgIcon from 'material-ui/SvgIcon';
+import { messages } from './defaultMessages';
 
 class BookmarkList extends React.Component {
   constructor(props) {
@@ -96,9 +97,7 @@ class BookmarkList extends React.Component {
 
   renderBookmarks() {
     const that = this;
-    const {formatMessage} = this.props.intl;
-    const {formatDate} = this.props.intl;
-    const {formatTime} = this.props.intl;
+    const {formatMessage, formatDate, formatTime} = this.props.intl;
     const DialogStyle = {
       dialogContainerstyl : {
         width: '362px',
@@ -125,13 +124,13 @@ class BookmarkList extends React.Component {
     
     const actions = [
       <FlatButton
-        label="Cancel"
+        label={formatMessage(messages.cancel)}
         primary={true}
         style={DialogStyle.cancelbtnstyl}
         className="cancelBtn"
         onClick={this.handleModalClose} />,
       <FlatButton
-        label="Delete"
+        label={formatMessage(messages.delete)}
         primary={true}
         autoFocus={true}
         onClick={that.handleRemoveBookmark.bind(that, that.state.bookmarkId)}
@@ -149,18 +148,6 @@ class BookmarkList extends React.Component {
     return(<div><ul className="o-bookmark-list">
       {
         this.state.bookmarkList.map(function(bkmark) {
-          const formatDateFrom_ms = new Date(Number(bkmark.createdTimestamp));
-          let hours = formatDateFrom_ms.getHours();
-          let minutes = formatDateFrom_ms.getMinutes();
-          const ampm = hours >= 12 ? 'pm' : 'am';
-          hours = hours % 12;
-          hours = hours ? hours : 12; // the hour '0' should be '12'
-          minutes = minutes < 10 ? `0${minutes}` : minutes;
-          const formattedAMPM = `${hours}:${minutes} ${ampm}`;
-          //return strTime;
-          //const formattedAMPM = this.formatAMPM(formatDateFrom_ms);
-          const dateWithTime = `${formatDateFrom_ms.getMonth() + 1}/${formatDateFrom_ms.getDate()}/${formatDateFrom_ms.getFullYear()} ${formattedAMPM}`;
-
           return <li
             className="o-bookmark-section"
             key={bkmark.id} >
@@ -173,13 +160,13 @@ class BookmarkList extends React.Component {
               onKeyPress={that.handleClick.bind(that, bkmark.uri)}
               onKeyUp={that.arrowKeyPress.bind(that)}>{bkmark.title}
               <div className="o-bookmark-date">
-                <time value={bkmark.createdTimestamp}>{formatDate(new Date(bkmark.createdTimestamp), {
+                <time value={bkmark.createdTimestamp}>{formatDate(new Date(Number(bkmark.createdTimestamp)), {
                   year : 'numeric',
                   month: 'numeric',
                   day  : 'numeric'
                 })}</time>
               {' '}
-                <time value={bkmark.createdTimestamp}>{formatTime(new Date(bkmark.createdTimestamp), {
+                <time value={bkmark.createdTimestamp}>{formatTime(new Date(Number(bkmark.createdTimestamp)), {
                   timeZone:that.props.locale,
                   hour12: true,
                   hour : 'numeric',
@@ -191,7 +178,7 @@ class BookmarkList extends React.Component {
               onBlur={that.onBlur.bind(that)}
               className="remove"
               onClick= {that.handleModalOpen.bind(this, bkmark.id)}
-              aria-label={formatMessage({id: 'removeBookmarkText'})}
+              aria-label={formatMessage(messages.removeBookmarkText)}
               role="button">
             </a>
             </li>
@@ -199,14 +186,15 @@ class BookmarkList extends React.Component {
       }
     </ul>
     <Dialog
-        title="Confirm Delete?"
+        title={formatMessage(messages.confirmDelete)}
         actions={actions}
         modal={false}
         open={that.state.modalOpen}
         onRequestClose={that.handleModalClose}
         contentStyle={DialogStyle.dialogContainerstyl}>
-        <CancelIcon tabIndex="0" onClick={that.handleModalClose} viewBox="703 14 18 18.7" style={DialogStyle.cancelIcon} className="handleCloseIcon"  onKeyDown={this.cancelIconKeySelect}/>
-        This action cannot be undone.
+        <CancelIcon tabIndex="0" onClick={that.handleModalClose} viewBox="703 14 18 18.7" style={DialogStyle.cancelIcon} 
+          className="handleCloseIcon"  aria-label={formatMessage(messages.close)} onKeyDown={this.cancelIconKeySelect}/>
+        {formatMessage(messages.actionCannotBeUnDone)}
     </Dialog>
      </div>     
     );

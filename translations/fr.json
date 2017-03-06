@@ -1,6 +1,10 @@
 {
   "bookmarkTitle": "Signets",
   "noBookmarksMsg": "Aucun signet trouvé..",
-  "removeBookmarkText": "Supprimer"
-
+  "removeBookmarkText": "Supprimer",
+  "cancel": "Annuler",
+  "delete": "Effacer",
+  "confirmDelete": "Confirmation de la suppression?",
+  "actionCannotBeUnDone": "Cette action ne peut pas être annulée.",
+  "close": "Fermer"
 }

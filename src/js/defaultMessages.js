@@ -18,6 +18,26 @@ export const messages = defineMessages({
     id: 'removeBookmarkText',
     description: 'Remove bookmark',
     defaultMessage: 'Remove bookmark'
+  },
+  cancel: {
+    id: 'cancel',
+    defaultMessage: 'Cancel'
+  },
+  delete: {
+    id: 'delete',
+    defaultMessage: 'Delete'
+  },
+  confirmDelete: {
+    id: 'confirmDelete',
+    defaultMessage: 'Confirm Delete?'
+  },
+  actionCannotBeUnDone: {
+    id: 'actionCannotBeUnDone',
+    defaultMessage: 'This action cannot be undone.'
+  },
+  close: {
+    id: 'close',
+    defaultMessage: 'Close'
   }
 });
 
