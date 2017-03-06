@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import { intlShape, injectIntl } from 'react-intl';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import SvgIcon from 'material-ui/SvgIcon';
@@ -95,9 +96,9 @@ class BookmarkList extends React.Component {
 
   renderBookmarks() {
     const that = this;
-    // const {formatMessage} = this.props.intl;
-    // const {formatDate} = this.props.intl;
-    // const {formatTime} = this.props.intl;
+    const {formatMessage} = this.props.intl;
+    const {formatDate} = this.props.intl;
+    const {formatTime} = this.props.intl;
     const DialogStyle = {
       dialogContainerstyl : {
         width: '362px',
@@ -172,13 +173,25 @@ class BookmarkList extends React.Component {
               onKeyPress={that.handleClick.bind(that, bkmark.uri)}
               onKeyUp={that.arrowKeyPress.bind(that)}>{bkmark.title}
               <div className="o-bookmark-date">
-                <time value={bkmark.createdTimestamp}>{dateWithTime}</time>
+                <time value={bkmark.createdTimestamp}>{formatDate(new Date(bkmark.createdTimestamp), {
+                  year : 'numeric',
+                  month: 'numeric',
+                  day  : 'numeric'
+                })}</time>
+              {' '}
+                <time value={bkmark.createdTimestamp}>{formatTime(new Date(bkmark.createdTimestamp), {
+                  timeZone:that.props.locale,
+                  hour12: true,
+                  hour : 'numeric',
+                  minute: 'numeric'
+                })}</time>
               </div>
             </a>
             <a href="javascript:void(0);"
               onBlur={that.onBlur.bind(that)}
               className="remove"
               onClick= {that.handleModalOpen.bind(this, bkmark.id)}
+              aria-label={formatMessage({id: 'removeBookmarkText'})}
               role="button">
             </a>
             </li>
@@ -209,11 +222,11 @@ class BookmarkList extends React.Component {
 }
 
 BookmarkList.propTypes = {
-  // intl: intlShape.isRequired,
+  intl: intlShape.isRequired,
   locale: PropTypes.string,
   clickBookmarkHandler: PropTypes.func,
   bookmarksArr: PropTypes.array.isRequired,
   drawerCallbacks: React.PropTypes.object
 };
 
-export default BookmarkList;
+export default injectIntl(BookmarkList);

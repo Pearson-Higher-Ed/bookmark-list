@@ -1,31 +1,21 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { addLocaleData, IntlProvider } from 'react-intl';
-import frLocaleData from 'react-intl/locale-data/fr';
-import frJson from './translations/fr.json';
+import { IntlProvider } from 'react-intl';
 import './main.scss';
 import ComponentOwner from './src/js/component-owner';
+import InternationalSupport from './src/js/InternationalSupport';
 
-const translations = {
-  'fr' : frJson
-};
-
-export default class BookmarkListComponent {
+export default class BookmarkListDemo {
   constructor(config) {
-    const locale = config.locale ? config.locale : '';
-    
-    if (locale) {
-      addLocaleData(frLocaleData);
-    }
     this.init(config);
   }
 
   init(config) {
-    const locale = config.locale ? config.locale : 'en';
+    this.intlObj = new InternationalSupport(config.locale);
 
     ReactDOM.render(
-      <IntlProvider locale={locale} messages={translations[locale]}>
+      <IntlProvider locale={this.intlObj.getLocale()} messages={this.intlObj.getMessages()}>
           <ComponentOwner 
               bookmarksArr={config.bookmarksArr}
               clickBookmarkHandler={config.clickBookmarkHandler}
@@ -37,6 +27,7 @@ export default class BookmarkListComponent {
   }
 }
 
+export { BookmarkListComponent } from './src/js/BookmarkListComponent';
 export BookmarkList from './src/js/BookmarkList';
 
-document.body.addEventListener('o.InitBookmarkList', e => new BookmarkListComponent(e.detail));
+document.body.addEventListener('o.InitBookmarkList', e => new BookmarkListDemo(e.detail));
