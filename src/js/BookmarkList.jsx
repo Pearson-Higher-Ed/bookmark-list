@@ -44,10 +44,11 @@ class BookmarkList extends React.Component {
     });
   }
   
-  renderNoBookmarks() {    
+  renderNoBookmarks() { 
+    const {formatMessage} = this.props.intl;   
     return (<div className="o-bookmark-empty-help">
       <div tabIndex="0" className="o-bookmark-empty-message">
-        <p>No Bookmarks were found.</p>
+        <p>{formatMessage(messages.noBookmarksMsg)}</p>
       </div>
     </div>);
   }
