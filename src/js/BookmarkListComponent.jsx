@@ -10,6 +10,7 @@ export const BookmarkListComponent = function BookmarkListComponent(paramsObj) {
       bookmarksArr={paramsObj.bookmarksArr}
       clickBookmarkHandler={paramsObj.clickBookmarkHandler}
       removeBookmarkHandler={paramsObj.removeBookmarkHandler}
-      drawerCallbacks={paramsObj.drawerCallbacks} />
+      drawerCallbacks={paramsObj.drawerCallbacks}
+      isET1={paramsObj.isET1}  />
   </IntlProvider>)
 }

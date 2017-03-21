@@ -99,6 +99,7 @@ class BookmarkList extends React.Component {
   renderBookmarks() {
     const that = this;
     const {formatMessage, formatDate, formatTime} = this.props.intl;
+    const isET1 = this.props.isET1;
     const DialogStyle = {
       dialogContainerstyl : {
         width: '362px',
@@ -159,8 +160,8 @@ class BookmarkList extends React.Component {
               href="javascript:void(0)"
               onClick = {that.handleClick.bind(that, bkmark.uri)}
               onKeyPress={that.handleClick.bind(that, bkmark.uri)}
-              onKeyUp={that.arrowKeyPress.bind(that)}>{bkmark.title}
-              <div className="o-bookmark-date">
+              onKeyUp={that.arrowKeyPress.bind(that)}>{isET1==="Y" ? 'Page '+bkmark.uri:bkmark.title}
+              {isET1==="Y" ? ' ': <div className="o-bookmark-date">
                 <time value={bkmark.createdTimestamp}>{formatDate(new Date(Number(bkmark.createdTimestamp)), {
                   year : 'numeric',
                   month: 'numeric',
@@ -173,15 +174,15 @@ class BookmarkList extends React.Component {
                   hour : 'numeric',
                   minute: 'numeric'
                 })}</time>
-              </div>
+              </div>}
             </a>
-            <a href="javascript:void(0);"
+            {isET1==="Y" ? ' ':<a href="javascript:void(0);"
               onBlur={that.onBlur.bind(that)}
               className="remove"
               onClick= {that.handleModalOpen.bind(this, bkmark.id)}
               aria-label={formatMessage(messages.removeBookmarkText)}
               role="button">
-            </a>
+            </a>}
             </li>
         })
       }
