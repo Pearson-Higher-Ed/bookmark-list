@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { darkBlack, fullBlack } from 'material-ui/styles/colors';
 
-import BookmarkList from './BookmarkList';
+import { BookmarkListComponent } from './BookmarkListComponent';
 
 const muiTheme = getMuiTheme({
   palette: {    
@@ -27,12 +27,13 @@ class ComponentOwner extends React.Component {
 
   render() {    
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <BookmarkList
-          bookmarksArr={this.props.bookmarksArr}
-          clickBookmarkHandler={this.props.clickBookmarkHandler} 
-          removeBookmarkHandler={this.props.removeBookmarkHandler} />
-      </MuiThemeProvider>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <BookmarkListComponent
+            bookmarksArr={this.props.bookmarksArr}
+            clickBookmarkHandler={this.props.clickBookmarkHandler}
+            removeBookmarkHandler={this.props.removeBookmarkHandler}
+            locale= {this.props.intl.locale}/>
+        </MuiThemeProvider>
     )
   }
 }

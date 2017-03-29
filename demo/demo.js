@@ -24,7 +24,7 @@ function getParam(item) {
 function init() {
   injectTapEventPlugin();
   const region = getParam('lang') || 'en';
-  addLocaleData(localeData[region]);
+  addLocaleData(localeData[region.split("-")[0]]);
   //Demo Loading component via event:
   document.body.dispatchEvent(new CustomEvent('o.InitBookmarkList', {
     detail: {

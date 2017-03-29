@@ -16,6 +16,7 @@
     "ci": "npm test && npm run build",
     "release": "node ./npm_scripts/release.js",
     "verify": "node ./npm_scripts/verify.js",
+    "prebuild": "npm run pseudoloc",
     "pseudoloc": "./node_modules/pseudoloc/bin/pseudoloc --readFile ./translations/en.json --writeFile ./translations/pseudo.json"
   },
   "author": "Dhanya Menon",
@@ -28,7 +29,7 @@
     "react-intl": "~2.0.1",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
-    "pseudoloc": "^1.1.0"
+    "@pearson-incubator/aquila-js-core": "^0.2.32"
   },
   "devDependencies": {
     "babel-core": "~6.3.17",
@@ -56,6 +57,7 @@
     "moment": "^2.14.1",
     "node-sass": "~3.4.2",
     "pearson-elements": "^0.7.0",
+    "pseudoloc": "^1.1.0",
     "react": "^15.4.0",
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.4.0",
