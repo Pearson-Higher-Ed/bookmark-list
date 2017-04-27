@@ -21,17 +21,22 @@ function getParam(item) {
   return svalue ? svalue[1] : svalue;
 }
 
+window.bookmarkClickCbk = function() {}
+window.removeBookmarkCbk = function() {}
+
+
 function init() {
   injectTapEventPlugin();
   const region = getParam('lang') || 'en';
-  addLocaleData(localeData[region.split("-")[0]]);
+  addLocaleData(localeData[region.split('-')[0]]);
   //Demo Loading component via event:
   document.body.dispatchEvent(new CustomEvent('o.InitBookmarkList', {
     detail: {
       elementId: 'demo-container',
       bookmarksArr: sampleData,
       locale: region,
-      clickBookmarkHandler : window.bookmarkClickCbk
+      clickBookmarkHandler: window.bookmarkClickCbk,
+      removeBookmarkHandler: window.removeBookmarkCbk
       //store: store,
       //actions: bookmarkActions
     }

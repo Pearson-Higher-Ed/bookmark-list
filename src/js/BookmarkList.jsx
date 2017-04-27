@@ -4,6 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import SvgIcon from 'material-ui/SvgIcon';
 import { messages } from './defaultMessages';
+import { AnalyticsManager } from '@pearson-incubator/aquila-js-core';
 
 class BookmarkList extends React.Component {
   constructor(props) {
@@ -32,6 +33,11 @@ class BookmarkList extends React.Component {
     const listDom = Array.from(document.getElementsByClassName('o-bookmark-section'));
     listDom.map((node) => node.className = 'o-bookmark-section');
     e.target.parentNode.classList.add('focused');
+    AnalyticsManager.dispatch({
+      category: 'Bookmarks',
+      action: 'Click',
+      label: JSON.stringify({ PageId: uri })
+    });
   }
 
   handleRemoveBookmark(id) {
@@ -41,6 +47,11 @@ class BookmarkList extends React.Component {
     this.setState({
       bookmarkList: this.props.bookmarksArr,
       modalOpen: false
+    });
+    AnalyticsManager.dispatch({
+      category: 'Bookmarks',
+      action: 'Remove',
+      label: JSON.stringify({ BookmarkId: id })
     });
   }
   
@@ -72,7 +83,7 @@ class BookmarkList extends React.Component {
 
   onBlur(e) {
     e.target.parentNode.className = ' o-bookmark-section';
-    if( e.target.parentNode === document.getElementsByClassName('o-bookmark-list')[0].lastChild ) {
+    if ( e.target.parentNode === document.getElementsByClassName('o-bookmark-list')[0].lastChild ) {
       this.props.drawerCallbacks.onActive('notes');
       this.props.drawerCallbacks.changeState(2);
     }
