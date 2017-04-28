@@ -48,11 +48,6 @@ class BookmarkList extends React.Component {
       bookmarkList: this.props.bookmarksArr,
       modalOpen: false
     });
-    AnalyticsManager.dispatch({
-      category: 'Bookmarks',
-      action: 'Remove',
-      label: JSON.stringify({ BookmarkId: id })
-    });
   }
   
   renderNoBookmarks() { 
