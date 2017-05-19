@@ -2,10 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { IntlProvider } from 'react-intl';
-import './main.scss';
-import ComponentOwner from './src/js/component-owner';
 import { InternationalSupport } from '@pearson-incubator/aquila-js-core';
+import ComponentOwner from './src/js/component-owner';
 import msgObject from './translations';
+import './main.scss';
 
 export default class BookmarkListDemo {
   constructor(config) {
@@ -17,11 +17,12 @@ export default class BookmarkListDemo {
 
     ReactDOM.render(
       <IntlProvider locale={this.intlObj.getLocale()} messages={this.intlObj.getMessages()}>
-          <ComponentOwner 
-              bookmarksArr={config.bookmarksArr}
-              clickBookmarkHandler={config.clickBookmarkHandler}
-              removeBookmarkHandler={config.removeBookmarkHandler}
-         />
+        <ComponentOwner
+          bookmarksArr={config.bookmarksArr}
+          clickBookmarkHandler={config.clickBookmarkHandler}
+          removeBookmarkHandler={config.removeBookmarkHandler}
+          drawerCallbacks={config.drawerCallbacks}
+        />
       </IntlProvider>,
       document.getElementById(config.elementId)
     );

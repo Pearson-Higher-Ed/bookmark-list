@@ -1,4 +1,4 @@
-import {defineMessages} from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 //
 // Default messages are 'en-US'
@@ -6,8 +6,8 @@ import {defineMessages} from 'react-intl';
 export const messages = defineMessages({
   bookmarkTitle: {
     id: 'bookmarkTitle',
-    description:'Bookmarks',
-    defaultMessage:'Bookmarks'
+    description: 'Bookmarks',
+    defaultMessage: 'Bookmarks'
   },
   noBookmarksMsg: {
     id: 'noBookmarksMsg',
