@@ -7,12 +7,12 @@ export function addBookmark(bookmark) {
     createdTimestamp: bookmark.createdTimestamp,
     title: bookmark.title,
     labels: bookmark.title
-  }
+  };
 }
 
 export function removeBookmark(id) {
   return {
     type: 'REMOVE_BOOKMARK',
-    id: id
-  }
+    id
+  };
 }
