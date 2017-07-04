@@ -107,15 +107,6 @@ class BookmarkList extends React.Component {
     }
   }
 
-  onBlur = (e) => {
-    e.target.parentNode.className = 'o-bookmark-section';
-    if (e.target.parentNode === document.getElementsByClassName('o-bookmark-list')[0].lastChild) {
-      this.props.drawerCallbacks.onActive('notes');
-      this.props.drawerCallbacks.changeState(2);
-    }
-    return true;
-  };
-
   dialogKeySelect = (event) => {
     if ((event.which === 9 || event.keyCode === 9) && !event.shiftKey) {
       document.getElementsByClassName('handleCloseIcon')[0].focus();
@@ -203,6 +194,7 @@ class BookmarkList extends React.Component {
               <li
                 className="o-bookmark-section"
                 key={bookmark.id}
+                tabIndex='0'
               >
                 <a
                   className="o-bookmark-content"
@@ -229,7 +221,6 @@ class BookmarkList extends React.Component {
                   </div>
                 </a>
                 <a
-                  onBlur={that.onBlur}
                   tabIndex="0"
                   className="remove"
                   onClick={e => that.handleModalOpen(bookmark.id, e)}
