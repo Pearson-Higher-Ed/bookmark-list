@@ -194,7 +194,6 @@ class BookmarkList extends React.Component {
               <li
                 className="o-bookmark-section"
                 key={bookmark.id}
-                tabIndex='0'
               >
                 <a
                   className="o-bookmark-content"
@@ -204,6 +203,8 @@ class BookmarkList extends React.Component {
                   onClick={e => that.handleClick(bookmark.uri, e)}
                   onKeyPress={e => that.handleClick(bookmark.uri, e)}
                   onKeyUp={BookmarkList.arrowKeyPress}
+                  tabIndex="0"
+                  role="button"
                 >{bookmark.title}
                   <div className="o-bookmark-date">
                     <time value={bookmark.createdTimestamp}>{formatDate(new Date(Number(bookmark.createdTimestamp)), {
@@ -268,7 +269,6 @@ BookmarkList.propTypes = {
   intl: intlShape,
   clickBookmarkHandler: PropTypes.func.isRequired,
   bookmarksArr: PropTypes.array.isRequired,
-  drawerCallbacks: React.PropTypes.object.isRequired,
   removeBookmarkHandler: PropTypes.func.isRequired
 };
 
