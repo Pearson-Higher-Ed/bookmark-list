@@ -20,7 +20,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { darkBlack, fullBlack } from 'material-ui/styles/colors';
 
-import { BookmarkListComponent } from './BookmarkListComponent';
+import BookmarkListComponent from './BookmarkListComponent';
 
 const muiTheme = getMuiTheme({
   palette: {

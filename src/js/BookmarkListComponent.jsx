@@ -18,7 +18,7 @@ import { InternationalSupport } from '@pearson-incubator/aquila-js-core';
 import BookmarkList from './BookmarkList';
 import msgObject from '../../translations';
 
-export const BookmarkListComponent = function BookmarkListComponent(paramsObj) {
+const BookmarkListComponent = function BookmarkListComponent(paramsObj) {
   const intlObj = new InternationalSupport(msgObject, paramsObj.locale);
 
   return (
@@ -32,3 +32,6 @@ export const BookmarkListComponent = function BookmarkListComponent(paramsObj) {
     </IntlProvider>
   );
 };
+
+export default BookmarkListComponent;
+

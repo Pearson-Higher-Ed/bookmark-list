@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the renderBookmarks function 1`] = `
+<div>
+  <ul
+    className="o-bookmark-list"
+  >
+    <li
+      className="o-bookmark-section"
+    >
+      <a
+        className="o-bookmark-content"
+        data-uri="urn:pearson:manifestation:1c31193b-c5fe-4b17-881d-1f591351e82e"
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyPress={[Function]}
+        onKeyUp={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        Neurons and Nerves
+        <div
+          className="o-bookmark-date"
+        >
+          <time
+            value={1499682113569}
+          >
+            7/10/2017
+          </time>
+           
+          <time
+            value={1499682113569}
+          >
+            3:51 PM
+          </time>
+        </div>
+      </a>
+      <a
+        aria-label="Remove Bookmarks"
+        className="remove"
+        onClick={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        
+      </a>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`renders the renderBookmarks function 2`] = `
+<div>
+  <ul
+    className="o-bookmark-list"
+  >
+    <li
+      className="o-bookmark-section"
+    >
+      <a
+        className="o-bookmark-content"
+        data-uri="urn:pearson:manifestation:1c31193b-c5fe-4b17-881d-1f591351e82e"
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyPress={[Function]}
+        onKeyUp={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        Neurons and Nerves
+        <div
+          className="o-bookmark-date"
+        >
+          <time
+            value={1499682113569}
+          >
+            7/10/2017
+          </time>
+           
+          <time
+            value={1499682113569}
+          >
+            3:51 PM
+          </time>
+        </div>
+      </a>
+      <a
+        aria-label="Remove Bookmarks"
+        className="remove"
+        onClick={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        
+      </a>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`renders the renderNoBookmarks function 1`] = `
+<div
+  className="o-bookmark-empty-help"
+>
+  <div
+    className="o-bookmark-empty-message"
+    role="article"
+    tabIndex="0"
+  >
+    <p>
+      No Bookmarks Where Found.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders the renderNoBookmarks function 2`] = `
+<div
+  className="o-bookmark-empty-help"
+>
+  <div
+    className="o-bookmark-empty-message"
+    role="article"
+    tabIndex="0"
+  >
+    <p>
+      No Bookmarks Where Found.
+    </p>
+  </div>
+</div>
+`;
