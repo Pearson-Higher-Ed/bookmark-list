@@ -25,8 +25,8 @@ export const messages = defineMessages({
   },
   noBookmarksMsg: {
     id: 'noBookmarksMsg',
-    description: 'No Bookmarks were found.',
-    defaultMessage: 'No Bookmarks were found.'
+    description: 'Your bookmarks will appear here.',
+    defaultMessage: 'Your bookmarks will appear here.'
   },
   removeBookmarkText: {
     id: 'removeBookmarkText',
