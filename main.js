@@ -29,6 +29,6 @@ export default class BookmarkListDemo {
   }
 }
 
-export { BookmarkListComponent } from './src/js/BookmarkListComponent';
+export BookmarkListComponent from './src/js/BookmarkListComponent';
 
 document.body.addEventListener('o.InitBookmarkList', e => new BookmarkListDemo(e.detail));
