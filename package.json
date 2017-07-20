@@ -1,6 +1,6 @@
 {
   "name": "@pearson-incubator/bookmarks",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "description": "Bookmark component rendering user bookmarks of a book",
   "main": "./main.js",
   "scripts": {
@@ -19,11 +19,11 @@
     "prebuild": "npm run pseudoloc",
     "pseudoloc": "./node_modules/pseudoloc/bin/pseudoloc --readFile ./translations/en.json --writeFile ./translations/pseudo.json"
   },
-    "jest": {
+  "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
-    "coveragePathIgnorePatterns" : [
+    "coveragePathIgnorePatterns": [
       "src/js/InternationalSupport.jsx"
     ],
     "setupFiles": [
@@ -41,9 +41,7 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      
-    ],
+    "transformIgnorePatterns": [],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
