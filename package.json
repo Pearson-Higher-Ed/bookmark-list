@@ -1,6 +1,6 @@
 {
   "name": "@pearson-incubator/bookmarks",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "description": "Bookmark component rendering user bookmarks of a book",
   "main": "./main.js",
   "scripts": {
@@ -45,11 +45,6 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
   },
   "eslintConfig": {
     "extends": "react-app"
