@@ -258,7 +258,7 @@ class BookmarkList extends React.Component {
   }
 
   render() {
-    if (this.state.bookmarkList.length) {
+    if (this.state.bookmarkList !== undefined && this.state.bookmarkList.length) {
       return this.renderBookmarks();
     }
     return this.renderNoBookmarks();
