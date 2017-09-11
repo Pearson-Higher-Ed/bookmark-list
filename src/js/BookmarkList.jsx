@@ -36,7 +36,7 @@ class BookmarkList extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.bookmarksArr !== this.props.bookmarksArr) {
-      this.setState({ bookmarkList: this.props.bookmarksArr });
+      this.setState({ bookmarkList: nextProps.bookmarksArr });
     }
   }
 
